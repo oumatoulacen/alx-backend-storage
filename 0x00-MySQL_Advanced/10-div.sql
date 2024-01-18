@@ -10,12 +10,10 @@ DELIMITER $$
 CREATE FUNCTION SafeDiv(a INT, b INT)
 RETURNS FLOAT DETERMINISTIC
 BEGIN
-    DECLARE total DECIMAL(10,2);
     IF b = 0 THEN
         RETURN 0;
     ELSE
-        SET total = a / b;
-        RETURN total;
+        RETURN a / b;
     END IF;
 END
 $$
