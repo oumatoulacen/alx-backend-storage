@@ -14,9 +14,9 @@ def nginx_stats():
     print("Methods:")
     print('\tmethod GET: ', collection.count_documents({'method': 'GET'}))
     print('\tmethod POST: ', collection.count_documents({'method': 'POST'}))
-    print('\tmethod Delete: ', collection.count_documents({'method': 'Delete'}))
-    print('\tmethod PATCH: ', collection.count_documents({'method': 'PATCH'}))
     print('\tmethod PUT: ', collection.count_documents({'method': 'PUT'}))
+    print('\tmethod PATCH: ', collection.count_documents({'method': 'PATCH'}))
+    print('\tmethod Delete: ', collection.count_documents({'method': 'Delete'}))
     print(collection.count_documents({'method': 'GET', 'path': '/status'}), ' status check')
 
 if __name__ == "__main__":
