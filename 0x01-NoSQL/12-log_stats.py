@@ -12,11 +12,11 @@ def nginx_stats():
     collection = db.nginx
     print(collection.count_documents({}), "logs")
     print("Methods:")
-    print('    method GET:', collection.count_documents({'method': 'GET'}))
-    print('    method POST:', collection.count_documents({'method': 'POST'}))
-    print('    method PUT:', collection.count_documents({'method': 'PUT'}))
-    print('    method PATCH:', collection.count_documents({'method': 'PATCH'}))
-    print('    method DELETE:', collection.count_documents({'method': 'DELETE'}))
+    print('\tmethod GET:', collection.count_documents({'method': 'GET'}))
+    print('\tmethod POST:', collection.count_documents({'method': 'POST'}))
+    print('\tmethod PUT:', collection.count_documents({'method': 'PUT'}))
+    print('\tmethod PATCH:', collection.count_documents({'method': 'PATCH'}))
+    print('\tmethod DELETE:', collection.count_documents({'method': 'DELETE'}))
     print(collection.count_documents({'method': 'GET', 'path': '/status'}), 'status check')
 
 if __name__ == "__main__":
