@@ -12,12 +12,12 @@ def nginx_stats():
     collection = db.nginx
     print(collection.count_documents({}), "logs")
     print("Methods:")
-    print('\tmethod GET: ', collection.count_documents({'method': 'GET'}))
-    print('\tmethod POST: ', collection.count_documents({'method': 'POST'}))
-    print('\tmethod PUT: ', collection.count_documents({'method': 'PUT'}))
-    print('\tmethod PATCH: ', collection.count_documents({'method': 'PATCH'}))
-    print('\tmethod DELETE: ', collection.count_documents({'method': 'DELETE'}))
-    print(collection.count_documents({'method': 'GET', 'path': '/status'}), ' status check')
+    print('\tmethod GET:', collection.count_documents({'method': 'GET'}))
+    print('\tmethod POST:', collection.count_documents({'method': 'POST'}))
+    print('\tmethod PUT:', collection.count_documents({'method': 'PUT'}))
+    print('\tmethod DELETE:', collection.count_documents({'method': 'DELETE'}))
+    print('\tmethod PATCH:', collection.count_documents({'method': 'PATCH'}))
+    print(collection.count_documents({'method': 'GET', 'path': '/status'}), 'status check')
 
 if __name__ == "__main__":
     '''run as main'''
