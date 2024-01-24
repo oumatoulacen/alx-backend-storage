@@ -26,8 +26,9 @@ def nginx_stats():
         # goup by ip and count the number of times it appears
         pipeline = {'$group': {'_id': '$ip', 'count': {'$sum': 1}}}
         sort = {'$sort': {'count': -1}}
-        sorted_ips_count = list(collection.aggregate([pipeline, sort]))
-        for ip_c in sorted_ips_count[:10]:
+        limit = {'$limit': 10}
+        sorted_ips_count = list(collection.aggregate([pipeline, sort, limit]))
+        for ip_c in sorted_ips_count:
             print(f"\t{ip_c.get('_id')}: {ip_c.get('count')}")
 
 
