@@ -28,7 +28,7 @@ def nginx_stats():
         sort = {'$sort': {'count': -1}}
         sorted_ips_count = list(collection.aggregate([pipeline, sort]))
         for ip_c in sorted_ips_count[:10]:
-            print('\t', ip_c.get('_id'), ':', ip_c.get('count'))
+            print(f"\t{ip_c.get('_id')}: {ip_c.get('count')}")
 
 
 if __name__ == "__main__":
