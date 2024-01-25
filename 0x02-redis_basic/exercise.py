@@ -32,5 +32,5 @@ class Cache:
         return self.get(key, fn=lambda d: d.decode("utf-8"))
 
     def get_int(self, key: str) -> int:
-        '''Retrieve integer data from Redis'''
+        '''Retrieve integer data from Redis '''
         return self.get(key, int)
