@@ -25,7 +25,7 @@ class Cache:
         if fn is not None and key is not None:
             return fn(self._redis.get(key))
         else:
-            return self._redis.get(key)
+            return key
 
     def get_str(self, key: str) -> str:
         '''Retrieve string data from Redis'''
