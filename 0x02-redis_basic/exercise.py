@@ -22,10 +22,11 @@ class Cache:
 
     def get(self, key: str, fn: Callable) -> Union[str, bytes, int, float]:
         '''Get data from Redis'''
-        if fn is not None and key is not None:
-            return fn(self._redis.get(key))
+        data = self._redis.get(key)
+        if fn is not None:
+            return fn(data)
         else:
-            return key
+            return data
 
     def get_str(self, key: str) -> str:
         '''Retrieve string data from Redis'''
