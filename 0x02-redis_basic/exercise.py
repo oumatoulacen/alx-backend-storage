@@ -2,7 +2,7 @@
 '''Writing strings to Redis'''
 
 
-from typing import Union
+from typing import Callable, Union
 import redis
 import uuid
 
@@ -12,7 +12,6 @@ class Cache:
     def __init__(self):
         '''Constructor'''
         self._redis = redis.Redis()
-        self._redis.ping()
         self._redis.flushdb()
 
     def store(self, data: Union[str, bytes, int, float]) -> str:
@@ -20,3 +19,30 @@ class Cache:
         random_key = str(uuid.uuid4())
         self._redis.set(random_key, data)
         return random_key
+
+    def get(self, key: str, fn: Callable) -> Union[str, bytes, int, float]:
+        '''Get data from Redis'''
+        return fn(self._redis.get(key)) if fn is not None and key is not None else self._redis.get(key)
+                  
+    def get_str(self, key: str) -> Union[str, bytes, int, float]:
+        '''Retrieve string data from Redis'''
+        return self.get(key, fn=lambda d: d.decode("utf-8"))
+
+    def get_int(self, key: str) -> Union[str, bytes, int, float]:
+        '''Retrieve integer data from Redis'''
+        return self.get(key, fn=int)  
+
+                  
+# if __name__ == '__main__':
+#     ''' Main Entry Point '''
+#     cache = Cache()
+
+#     TEST_CASES = {
+#         b"foo": None,
+#         123: int,
+#         "bar": lambda d: d.decode("utf-8")
+#     }
+
+#     for value, fn in TEST_CASES.items():
+#         key = cache.store(value)
+#         assert cache.get(key, fn=fn) == value
