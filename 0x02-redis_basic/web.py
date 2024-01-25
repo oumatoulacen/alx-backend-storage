@@ -5,6 +5,7 @@ import redis
 import requests
 from functools import wraps
 
+
 r = redis.Redis()
 
 
