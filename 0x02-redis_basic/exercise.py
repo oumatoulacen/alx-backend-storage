@@ -34,17 +34,3 @@ class Cache:
     def get_int(self, key: str) -> int:
         '''Retrieve integer data from Redis'''
         return self.get(key, int)
-
-# if __name__ == '__main__':
-#     ''' Main Entry Point '''
-#     cache = Cache()
-
-#     TEST_CASES = {
-#         b"foo": None,
-#         123: int,
-#         "bar": lambda d: d.decode("utf-8")
-#     }
-
-#     for value, fn in TEST_CASES.items():
-#         key = cache.store(value)
-#         assert cache.get(key, fn=fn) == value
