@@ -17,6 +17,7 @@ def count_calls(method: Callable) -> Callable:
         return method(self, *args, **kwargs)
     return wrapper
 
+
 def call_history(method: Callable) -> Callable:
     """store the history of inputs and outputs"""
     @wraps(method)
@@ -29,6 +30,7 @@ def call_history(method: Callable) -> Callable:
         return output
 
     return wrapper
+
 
 def replay(fn: Callable) -> None:
     '''Displays the call history of a Cache class' method.
@@ -54,6 +56,7 @@ def replay(fn: Callable) -> None:
             fxn_output,
         ))
 
+
 class Cache:
     '''Cache class'''
     def __init__(self):
@@ -69,11 +72,10 @@ class Cache:
         self._redis.set(random_key, data)
         return random_key
 
-    def get(
-        self,
-        key: str,
-        fn: Callable = None
-        ) -> Union[str, bytes, int, float]:
+    def get(self,
+            key: str,
+            fn: Callable = None
+            ) -> Union[str, bytes, int, float]:
         '''Get data from Redis'''
         data = self._redis.get(key)
         if fn is not None:
