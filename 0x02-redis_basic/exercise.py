@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 '''Writing strings to Redis'''
 
+
 from functools import wraps
 from typing import Callable, Union, Any
 import redis
 import uuid
+
 
 def count_calls(method: Callable) -> Callable:
     '''Count calls decorator'''
@@ -43,7 +45,11 @@ class Cache:
         self._redis.set(random_key, data)
         return random_key
 
-    def get(self, key: str, fn: Callable = None) -> Union[str, bytes, int, float]:
+    def get(
+        self,
+        key: str,
+        fn: Callable = None
+        ) -> Union[str, bytes, int, float]:
         '''Get data from Redis'''
         data = self._redis.get(key)
         if fn is not None:
