@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-'''Writing strings to Redis'''
+'''Reading from Redis and recovering original type'''
 
 
 import redis
@@ -10,8 +10,8 @@ class Cache:
     def __init__(self):
         '''Constructor'''
         self._redis = redis.Redis()
-        self._redis.ping()
         self._redis.flushdb()
+        print(self._redis.ping())
 
     def store(self, data):
         '''Store data in Redis'''
