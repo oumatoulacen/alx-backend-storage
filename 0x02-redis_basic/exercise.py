@@ -25,15 +25,15 @@ class Cache:
         if fn is not None and key is not None:
             return fn(self._redis.get(key))
         else:
-            self._redis.get(key)
+            return self._redis.get(key)
 
-    def get_str(self, key: str) -> Union[str, bytes, int, float]:
+    def get_str(self, key: str) -> str:
         '''Retrieve string data from Redis'''
         return self.get(key, fn=lambda d: d.decode("utf-8"))
 
-    def get_int(self, key: str) -> Union[str, bytes, int, float]:
+    def get_int(self, key: str) -> int:
         '''Retrieve integer data from Redis'''
-        return self.get(key, fn=int)
+        return self.get(key, int)
 
 # if __name__ == '__main__':
 #     ''' Main Entry Point '''
